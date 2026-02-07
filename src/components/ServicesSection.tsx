@@ -1,25 +1,13 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useRef } from "react";
+import { ArrowRight, Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { ServiceDetailModal } from "./ServiceDetailModal";
 import { servicesData } from "@/data/servicesData";
 
 export const ServicesSection = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [selectedService, setSelectedService] = useState<typeof servicesData[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 320;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
 
   const handleServiceClick = (service: typeof servicesData[0]) => {
     setSelectedService(service);
@@ -49,93 +37,66 @@ export const ServicesSection = () => {
             </p>
           </motion.div>
 
-          {/* Navigation buttons */}
-          <div className="flex justify-end gap-2 mb-6">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => scroll("left")}
-              className="rounded-full border-border hover:bg-primary hover:text-primary-foreground"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => scroll("right")}
-              className="rounded-full border-border hover:bg-primary hover:text-primary-foreground"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
-
-          {/* Services horizontal scroll */}
-          <div
-            ref={scrollRef}
-            className="flex gap-0 overflow-x-auto scrollbar-hide scroll-smooth"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
+          {/* Services Grid - 4 columns x 2 rows */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {servicesData.map((service, index) => (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative flex-shrink-0 w-[280px] md:w-[300px] h-[450px] cursor-pointer group"
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
                 onClick={() => handleServiceClick(service)}
+                className="glass-card overflow-hidden group h-full flex flex-col cursor-pointer hover:shadow-lg transition-all"
               >
-                {/* Background image */}
-                <div className="absolute inset-0">
+                {/* Image */}
+                <div className="relative h-40 overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 </div>
 
-                {/* Content - always visible at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-xl font-bold mb-1 leading-tight">
-                    {service.title}
-                  </h3>
-                  <p className="text-white/70 text-sm">{service.subtitle}</p>
-                </div>
+                {/* Content */}
+                <div className="p-4 md:p-5 flex flex-col flex-grow">
+                  <h3 className="text-lg font-bold mb-1 line-clamp-2">{service.title}</h3>
+                  <p className="text-primary text-xs font-semibold mb-2">{service.subtitle}</p>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2 flex-grow">{service.description}</p>
+                  
+                  {/* Features */}
+                  <div className="space-y-1.5 mb-4">
+                    {service.features.slice(0, 3).map((feature) => (
+                      <div key={feature} className="flex items-start gap-2 text-xs">
+                        <Check className="w-3 h-3 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground line-clamp-1">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
 
-                {/* Hover card */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    opacity: activeIndex === index ? 1 : 0,
-                    y: activeIndex === index ? 0 : 20,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-x-4 top-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl p-6 pointer-events-none"
-                  style={{ pointerEvents: activeIndex === index ? "auto" : "none" }}
-                >
-                  <h3 className="text-xl font-bold text-foreground mb-2 leading-tight">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-1">{service.subtitle}</p>
-                  <div className="w-12 h-0.5 bg-primary mb-4" />
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {service.description}
-                  </p>
-                  <p className="text-xs text-muted-foreground mb-4">
-                    <span className="font-semibold">Key Features:</span> {service.features.slice(0, 3).join(", ")}
-                  </p>
-                  <button className="flex items-center gap-2 text-primary font-medium group/btn">
-                    <span>Get Quote</span>
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
-                  </button>
-                </motion.div>
+                  <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-xs">
+                    Get Quote
+                    <ArrowRight className="w-3 h-3 ml-1" />
+                  </Button>
+                </div>
               </motion.div>
             ))}
           </div>
+
+          {/* View All Services Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-12"
+          >
+            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+              View All Services
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </motion.div>
         </div>
       </section>
 
