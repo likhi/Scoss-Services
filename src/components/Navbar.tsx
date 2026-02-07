@@ -11,10 +11,10 @@ const navLinks = [
     name: "Services", 
     href: "/services",
     dropdown: [
-      { name: "Web Development", href: "/services" },
-      { name: "Mobile Apps", href: "/services" },
-      { name: "Cybersecurity", href: "/services" },
-      { name: "Cloud Consulting", href: "/services" },
+      { name: "Website Design & Development", href: "/services/web-development" },
+      { name: "Digital Marketing", href: "/services/digital-marketing" },
+      { name: "IT Infrastructure", href: "/services/it-infrastructure" },
+      { name: "All Services", href: "/services" },
     ]
   },
   { name: "About Us", href: "/about" },

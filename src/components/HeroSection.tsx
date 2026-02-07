@@ -8,24 +8,24 @@ import heroBg3 from "@/assets/hero-bg-3.jpg";
 
 const slides = [
   {
-    title1: "SMART CODE SOFTWARE",
-    title2: "SOLUTIONS & SERVICES",
-    tagline: "Elevating Business through Technology",
-    description: "We provide cutting-edge web development, mobile apps, cybersecurity, and cloud consulting services to help your business thrive in the digital age.",
+    title1: "Leading IT Services",
+    title2: "Company in Tumkur",
+    tagline: "Digital Transformation Services",
+    description: "Transform your business with comprehensive IT services, custom software development, and technology consulting.",
     background: heroBg1,
   },
   {
-    title1: "SECURE YOUR",
-    title2: "DIGITAL ASSETS",
-    tagline: "Cybersecurity You Can Trust",
-    description: "Enterprise-grade security solutions, penetration testing, and 24/7 threat monitoring to protect your valuable business data.",
+    title1: "Professional Website",
+    title2: "Design & Development",
+    tagline: "Custom Solutions for Your Business",
+    description: "From business websites to e-commerce platforms, we create digital experiences that convert visitors into customers.",
     background: heroBg2,
   },
   {
-    title1: "CLOUD SOLUTIONS",
-    title2: "FOR GROWTH",
-    tagline: "Scale Without Limits",
-    description: "Strategic cloud migration and optimization services with AWS, Azure, and GCP to enhance your infrastructure and reduce costs.",
+    title1: "Digital Marketing",
+    title2: "That Delivers Results",
+    tagline: "Grow Your Online Presence",
+    description: "SEO, social media marketing, PPC campaigns, and content marketing strategies to boost your visibility and revenue.",
     background: heroBg3,
   },
 ];
@@ -189,24 +189,28 @@ export const HeroSection = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button 
-                size="lg" 
-                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-7 text-lg font-bold shadow-2xl shadow-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-primary/50"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Get Started
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="group border-2 border-white/30 bg-white/5 text-white hover:border-secondary hover:bg-secondary/10 px-10 py-7 text-lg font-semibold backdrop-blur-md transition-all duration-300 hover:scale-105"
-              >
-                <Play className="w-5 h-5 mr-2 text-secondary group-hover:scale-110 transition-transform" />
-                <span>Watch Demo</span>
-              </Button>
+              <a href="#contact">
+                <Button 
+                  size="lg" 
+                  className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-10 py-7 text-lg font-bold shadow-2xl shadow-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-primary/50"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Get a Free IT Consultation
+                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </a>
+              <a href="#services">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="group border-2 border-white/30 bg-white/5 text-white hover:border-secondary hover:bg-secondary/10 px-10 py-7 text-lg font-semibold backdrop-blur-md transition-all duration-300 hover:scale-105"
+                >
+                  <Play className="w-5 h-5 mr-2 text-secondary group-hover:scale-110 transition-transform" />
+                  <span>Explore Our Services</span>
+                </Button>
+              </a>
             </motion.div>
 
             {/* Stats with enhanced design */}

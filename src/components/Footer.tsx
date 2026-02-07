@@ -5,12 +5,12 @@ import scossLogo from "@/assets/scoss-logo.png";
 
 const footerLinks = {
   services: [
-    { name: "Web Development", href: "#services" },
-    { name: "Mobile Apps", href: "#services" },
-    { name: "Cybersecurity", href: "#services" },
-    { name: "Cloud Solutions", href: "#services" },
-    { name: "IT Consulting", href: "#services" },
-    { name: "Technical Support", href: "#services" },
+    { name: "Website Development", href: "/services/web-development" },
+    { name: "Digital Marketing", href: "/services/digital-marketing" },
+    { name: "IT Infrastructure", href: "/services/it-infrastructure" },
+    { name: "Cloud Solutions", href: "/services" },
+    { name: "IT Consulting", href: "/services" },
+    { name: "All Services", href: "/services" },
   ],
   company: [
     { name: "About Us", href: "#about" },
