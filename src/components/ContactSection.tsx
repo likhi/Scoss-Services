@@ -21,7 +21,7 @@ export const ContactSection = () => {
     name: "",
     email: "",
     phone: "",
-    subject: "",
+    company: "",
     message: "",
   });
 
@@ -41,7 +41,7 @@ export const ContactSection = () => {
       name: "",
       email: "",
       phone: "",
-      subject: "",
+      company: "",
       message: "",
     });
     setIsSubmitting(false);
@@ -246,14 +246,13 @@ export const ContactSection = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject *</Label>
+                    <Label htmlFor="company">Company Name</Label>
                     <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="Project Inquiry"
-                      value={formData.subject}
+                      id="company"
+                      name="company"
+                      placeholder="Your Company"
+                      value={formData.company}
                       onChange={handleChange}
-                      required
                       className="bg-muted/30 border-border/50 focus:border-primary"
                     />
                   </div>
