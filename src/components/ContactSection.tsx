@@ -76,7 +76,7 @@ export const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="relative py-32 overflow-hidden">
+    <section id="contact" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 grid-pattern opacity-10" />
       
